@@ -8,13 +8,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -24,4 +24,25 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.logo-text {
+  background: -webkit-linear-gradient(left, #1d39be, #0bdad0, #745eed, #001be9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* ::-webkit-scrollbar-track {
+  background: rgb(66, 101, 128);
+} */
+
+::-webkit-scrollbar-thumb {
+  background: #92c5fc;
+  border-radius: 12px;
+  height: 2rem;
 }
