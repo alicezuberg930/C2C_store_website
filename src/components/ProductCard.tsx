@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const { FaStar } = icons
+    let slug = `${(product.name!).replace(/\s+/g, '-')}-${product._id}`
 
     return (
         <div className='px-2 mt-2 xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
@@ -19,7 +20,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                                 </div>
                             </div> : <></>
                     }
-                    <Link className='text-decoration-none' href={`/product/${product._id}`}>
+                    <Link className='text-decoration-none' href={`/product/${slug}`}>
                         <div className='aspect-[1/1.1] w-full relative overflow-hidden rounded-t-md'>
                             <Image fill loading='lazy' className='object-cover group-hover:scale-105 transition-transform duration-1000' src={product.images![0]} alt={product.name!} sizes='width: 100%, height: 100%' />
                         </div>

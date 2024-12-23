@@ -282,5 +282,68 @@ export const user: User = {
     "createdAt": "2024-11-24T16:43:21.174Z",
     "updatedAt": "2024-12-04T09:04:35.290Z",
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDM1N2E5MTZiMzI0YTU1ZGVhNzA2ZiIsInBob25lIjoiMDkwMTIzNDU2OSIsImlhdCI6MTczNDg4NjUyNH0.byrfowv0MkDW1t-cSQGK5xrMFv7OPHW1qiWxUevyzeM",
-    "avatar": "./assets/user.png",
+    "avatar": "../assets/user.png",
 }
+
+export const reviews: Review[] = [
+    {
+        _id: "1",
+        user: user,
+        star: 1,
+        comment: "Shop đóng gói hàng chắc chắn qua hẳn 3 lớp hộp liền, sản phẩm có thẻ bảo hành mình chưa kích hoạt, dùng êm k bị ồn. Shop giao hàng nhanh.",
+        medias: [
+            "https://down-vn.img.susercontent.com/file/76d9b79d497b05294d4ccf98cb8488ae.webp",
+            "https://down-vn.img.susercontent.com/file/00ce5235a1a3d25f01c989df02b93185.webp",
+            "https://down-vn.img.susercontent.com/file/da992457e000829ced16b780516f6b3d.webp"
+        ],
+        reviews: 12,
+    },
+    {
+        _id: "2",
+        user: user,
+        star: 4,
+        comment: "Shop đóng gói hàng chắc chắn qua hẳn 3 lớp hộp liền, sản phẩm có thẻ bảo hành mình chưa kích hoạt, dùng êm k bị ồn. Shop giao hàng nhanh.",
+        medias: [
+            "https://down-vn.img.susercontent.com/file/76d9b79d497b05294d4ccf98cb8488ae.webp",
+            "https://down-vn.img.susercontent.com/file/00ce5235a1a3d25f01c989df02b93185.webp",
+            "https://down-vn.img.susercontent.com/file/da992457e000829ced16b780516f6b3d.webp"
+        ],
+        reviews: 12,
+    },
+    {
+        _id: "3",
+        user: user,
+        star: 5,
+        comment: "Shop đóng gói hàng chắc chắn qua hẳn 3 lớp hộp liền, sản phẩm có thẻ bảo hành mình chưa kích hoạt, dùng êm k bị ồn. Shop giao hàng nhanh.",
+        medias: [
+            "https://down-vn.img.susercontent.com/file/76d9b79d497b05294d4ccf98cb8488ae.webp",
+            "https://down-vn.img.susercontent.com/file/00ce5235a1a3d25f01c989df02b93185.webp",
+            "https://down-vn.img.susercontent.com/file/da992457e000829ced16b780516f6b3d.webp"
+        ],
+        reviews: 8,
+    },
+    {
+        _id: "4",
+        user: user,
+        star: 3,
+        comment: "Shop đóng gói hàng chắc chắn qua hẳn 3 lớp hộp liền, sản phẩm có thẻ bảo hành mình chưa kích hoạt, dùng êm k bị ồn. Shop giao hàng nhanh.",
+        medias: [
+            "https://down-vn.img.susercontent.com/file/76d9b79d497b05294d4ccf98cb8488ae.webp",
+            "https://down-vn.img.susercontent.com/file/00ce5235a1a3d25f01c989df02b93185.webp",
+            "https://down-vn.img.susercontent.com/file/da992457e000829ced16b780516f6b3d.webp"
+        ],
+        reviews: 4,
+    },
+    {
+        _id: "5",
+        user: user,
+        star: 4,
+        comment: "Shop đóng gói hàng chắc chắn qua hẳn 3 lớp hộp liền, sản phẩm có thẻ bảo hành mình chưa kích hoạt, dùng êm k bị ồn. Shop giao hàng nhanh.",
+        medias: [
+            "https://down-vn.img.susercontent.com/file/76d9b79d497b05294d4ccf98cb8488ae.webp",
+            "https://down-vn.img.susercontent.com/file/00ce5235a1a3d25f01c989df02b93185.webp",
+            "https://down-vn.img.susercontent.com/file/da992457e000829ced16b780516f6b3d.webp"
+        ],
+        reviews: 2,
+    }
+]

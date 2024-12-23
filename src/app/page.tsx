@@ -6,7 +6,7 @@ import ProductCard from '../components/ProductCard'
 const HomePage: React.FC = () => {
   return (
     <div className='w-full'>
-      <div className='w-full mt-16'>
+      <div className='w-full'>
         <h2 className="text-2xl font-bold before:pr-3 before:border-l-4 before:border-l-blue-500">Sản Phẩm Mới</h2>
         <div className="flex flex-wrap -mx-2 mt-2">
           {
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      <div className='w-full mt-16'>
+      <div className='w-full mt-12'>
         <h2 className="text-2xl font-bold before:pr-3 before:border-l-4 before:border-l-blue-500">Đang khuyến mãi</h2>
         <div className="flex flex-wrap -mx-2 mt-2">
           {
