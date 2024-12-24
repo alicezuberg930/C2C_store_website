@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaChevronLeft, FaChevronRight, FaFacebook, FaRegAddressBook, FaUser } from "react-icons/fa";
 import { RiCustomerService2Fill, RiSubtractFill } from "react-icons/ri";
 import { IoIosAdd, IoMdNotifications } from "react-icons/io";
-import { MdInbox, MdOutlineAddShoppingCart, MdOutlineCreditCard, MdOutlineDiscount, MdOutlineModeComment, MdOutlineThumbUp, MdVerified } from "react-icons/md";
+import { MdArrowBackIosNew, MdArrowForwardIos, MdInbox, MdOutlineAddShoppingCart, MdOutlineCreditCard, MdOutlineDiscount, MdOutlineModeComment, MdOutlineThumbUp, MdVerified } from "react-icons/md";
 import { TbCreditCardRefund } from "react-icons/tb";
 import { BsPencilSquare } from "react-icons/bs";
 
@@ -34,5 +34,7 @@ export const icons = {
     MdOutlineDiscount,
     CiWallet,
     RiCustomerService2Fill,
-    BsPencilSquare
+    BsPencilSquare,
+    MdArrowBackIosNew,
+    MdArrowForwardIos
 }

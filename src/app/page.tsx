@@ -2,11 +2,14 @@ import Image from 'next/image'
 import React from 'react'
 import { products } from '../common/dummy.data'
 import ProductCard from '../components/ProductCard'
+import BannerSlider from '@/components/BannerSlider'
 
 const HomePage: React.FC = () => {
   return (
     <div className='w-full'>
-      <div className='w-full'>
+      <BannerSlider />
+
+      <div className='w-full mt-12'>
         <h2 className="text-2xl font-bold before:pr-3 before:border-l-4 before:border-l-blue-500">Sản Phẩm Mới</h2>
         <div className="flex flex-wrap -mx-2 mt-2">
           {
