@@ -4,7 +4,7 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
     const { RiCustomerService2Fill, CiWallet, FaUser, IoMdNotifications, MdInbox, TbCreditCardRefund, FaRegAddressBook, MdOutlineCreditCard, MdOutlineModeComment, CiHeart, MdOutlineDiscount } = icons
 
     return (
-        <aside className="bg-white rounded-md h-fit">
+        <aside className="bg-white rounded-md h-fit flex-none w-fit">
             <div className="flex gap-2 p-2 items-center mb-3">
                 <img src={user.avatar} alt="avatar" className="w-12 h-12 rounded-full" />
                 <div>
@@ -69,7 +69,7 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
                     </a>
                 </li>
                 <li className="py-2 px-3 hover:bg-gray-200">
-                    <a className="flex gap-2 items-center" href="/customer/reward?checkout_flow=my_account">
+                    <a className="flex gap-2 items-center" href="/user/wallet">
                         <CiWallet className="w-6 h-6" />
                         <span>Quản lý ví của tôi</span>
                     </a>

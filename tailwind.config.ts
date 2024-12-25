@@ -67,6 +67,9 @@ const config: Config = {
         'rotate-center': 'rotate-center 10s linear infinite;',
         'scale-up-center': 'scale-up-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;'
       },
+      backgroundImage: {
+        'wallet': "url('/assets/pattern.svg')",
+      },
     },
   },
   plugins: [],

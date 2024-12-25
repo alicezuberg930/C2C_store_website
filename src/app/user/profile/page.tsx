@@ -68,7 +68,7 @@ const UserProfilePage: React.FC = () => {
                         </div>
                         <div className="border mx-4 flex-none"></div>
                         <div className="flex-1">
-                            <span className="info-title">Số điện thoại và Email</span>
+                            <span>Số điện thoại và Email</span>
                             <div className="">
                                 <div className="flex items-center justify-between py-5 text-sm">
                                     <div className="flex items-center">
@@ -92,7 +92,7 @@ const UserProfilePage: React.FC = () => {
                                     <button className="border border-blue-500 text-blue-500 rounded-md px-3 py-1">Cập nhật</button>
                                 </div>
                             </div>
-                            <span className="info-title">Bảo mật</span>
+                            <span>Bảo mật</span>
                             <div className="">
                                 <div className="flex items-center justify-between py-5 text-sm">
                                     <div className="table">
