@@ -4,7 +4,7 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
     const { RiCustomerService2Fill, CiWallet, FaUser, IoMdNotifications, MdInbox, TbCreditCardRefund, FaRegAddressBook, MdOutlineCreditCard, MdOutlineModeComment, CiHeart, MdOutlineDiscount } = icons
 
     return (
-        <aside className="bg-white rounded-md h-fit flex-none w-fit">
+        <aside className="bg-white flex-none w-fit fixed h-screen md:rounded-md overflow-auto md:h-fit md:relative top-0 left-0">
             <div className="flex gap-2 p-2 items-center mb-3">
                 <img src={user.avatar} alt="avatar" className="w-12 h-12 rounded-full" />
                 <div>

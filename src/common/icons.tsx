@@ -6,7 +6,7 @@ import { RiCustomerService2Fill, RiSubtractFill } from "react-icons/ri";
 import { IoIosAdd, IoMdNotifications } from "react-icons/io";
 import { MdArrowBackIosNew, MdArrowForwardIos, MdInbox, MdOutlineAddShoppingCart, MdOutlineCreditCard, MdOutlineDiscount, MdOutlineMail, MdOutlineModeComment, MdOutlineThumbUp, MdOutlineVerifiedUser, MdVerified } from "react-icons/md";
 import { TbCreditCardRefund } from "react-icons/tb";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsCoin, BsPencilSquare } from "react-icons/bs";
 import { FiPhone } from "react-icons/fi"
 
 export const icons = {
@@ -43,5 +43,6 @@ export const icons = {
     MdOutlineMail,
     CiLock,
     MdOutlineVerifiedUser,
-    FaRegTrashCan
+    FaRegTrashCan,
+    BsCoin
 }

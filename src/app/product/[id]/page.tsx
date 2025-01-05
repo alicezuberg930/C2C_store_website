@@ -130,9 +130,7 @@ const ProductDetailsPage: React.FC<{ params: { id: string } }> = ({ params }) =>
                                                 <div className='w-auto p-1 text-sm rounded-lg text-blue-400 bg-blue-50'>
                                                     -{product?.sale}%
                                                 </div>
-                                            </>
-                                            : <></>
-
+                                            </> : <></>
                                     }
                                 </div>
                             </div>
