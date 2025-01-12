@@ -1,6 +1,33 @@
+"use client"
+import { formatVND } from "@/common/utils"
+import { createTransaction, momo } from "@/services/api.service"
+import { isAxiosError } from "axios"
+import { useRouter } from "next/navigation"
 import React, { Dispatch, SetStateAction } from "react"
+import { toast } from "react-toastify"
 
-const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<SetStateAction<boolean>> }> = ({ showModal, setShowModal }) => {
+const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<SetStateAction<boolean>>, amount: number }> = ({ showModal, setShowModal, amount }) => {
+    const router = useRouter()
+
+    const handleTopUpRequest = async () => {
+        // momo()
+        // return
+        let transaction: Transaction = { userId: "675d0b1f16a1c2884e9be834", amount, type: "wallet topup", status: "pending", paymentMethod: "momo" }
+        try {
+            let a = await createTransaction({ transaction })
+            toast.success(a.message)
+            if (a.data?.paymentUrl) router.push(a.data.paymentUrl)
+        } catch (error) {
+            if (isAxiosError(error)) {
+                if (error.response) {
+                    (error.response?.data.message).forEach((message: string) => toast.error(JSON.stringify(message)))
+                } else {
+                    toast.error('Loi con me m r')
+                }
+            }
+        }
+    }
+
     return (
         <div className={`w-full h-screen fixed inset-0 z-20 overflow-y-scroll ${showModal ? 'block' : 'hidden'}`}>
             <div className="flex items-end justify-center min-h-screen px-4 py-12 text-center sm:block sm:p-0">
@@ -16,7 +43,7 @@ const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<
                                 </div>
                                 <p className="product-name" title="Nạp TikiXu">Nạp TienXu</p>
                                 <p className="product-qty">SL: 1</p>
-                                <h2 className="product-price">11.111 ₫</h2>
+                                <h2 className="product-price">{formatVND(amount)}</h2>
                             </div>
 
                             <div className="">
@@ -75,7 +102,7 @@ const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<
                             <div className="border-y">
                                 <div className="my-3 flex justify-between text-lg font-semibold">
                                     <span>Tổng tiền</span>
-                                    <span>11.111 ₫</span>
+                                    <span>{formatVND(amount)}</span>
                                 </div>
                             </div>
                             {/* <div className="Divider-sc-napfs-0 lmBswD"></div> */}
@@ -86,7 +113,7 @@ const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<
                                 </p>
                                 <div className="flex gap-3 mt-3">
                                     <button className="flex-1 py-2 text-white bg-blue-500 rounded-md" onClick={() => setShowModal(false)}>Huỷ</button>
-                                    <button className="flex-1 py-2 border border-gray-200 rounded-md">Thanh toán</button>
+                                    <button className="flex-1 py-2 border border-gray-200 rounded-md" onClick={handleTopUpRequest}>Thanh toán</button>
                                 </div>
                             </div>
                         </div>

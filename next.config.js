@@ -11,7 +11,9 @@ const nextConfig = {
     ]
   },
   env: {
-    API_URL: process.env.API_URL
+    DEVELOPMENT_API_URL: process.env.DEVELOPMENT_API_URL,
+    PRODUCTION_API_URL: process.env.PRODUCTION_API_URL,
+    ENVIRONMENT: process.env.ENVIRONMENT
   },
   experimental: {
     serverActions: true

@@ -1,6 +1,7 @@
-'use server'
+// "use server"
+import axioInstance from "@/configs/axios.config";
 import { MomoRequest } from "@/types/momo";
-import axios from "axios"
+import axios, { AxiosError, AxiosResponse, isAxiosError } from "axios"
 import crypto from 'crypto'
 
 export const momo = async () => {
@@ -14,8 +15,8 @@ export const momo = async () => {
         amount: 10000,
         orderId: String(new Date().getTime()),
         orderInfo: "pay with MoMo",
-        redirectUrl: "http://localhost:3001/test",
-        ipnUrl: "http://localhost:3001/test",
+        ipnUrl: "http://localhost:4000/api/v1/transactions/callback",
+        redirectUrl: "http://localhost:3000/user/wallet",
         lang: 'vi',
         requestType: "captureWallet",
         autoCapture: true,
@@ -58,4 +59,15 @@ export const momo = async () => {
     } catch (error) {
         console.log(error);
     }
+}
+
+export const createTransaction = async ({ transaction }: { transaction: Transaction }) => {
+    // try {
+    let response = await axioInstance<SingleAPIResponse<Transaction | null>>({ method: "POST", url: "/transactions", data: transaction })
+    return response.data
+    // } catch (error: any) {
+    //     if (isAxiosError(error)) {
+    //         return error.response?.data
+    //     }
+    // }
 }

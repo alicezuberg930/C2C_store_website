@@ -1,23 +1,26 @@
 "use client"
 import { user } from "@/common/dummy.data"
 import { icons } from "@/common/icons"
+import { momoPaymentResult } from "@/common/payment.result"
 import ChoosePaymentPopUp from "@/components/ChoosePaymentPopUp"
 import ProfileMenu from "@/components/ProfileMenu"
-import React, { FormEvent, useState } from "react"
+import { createTransaction } from "@/services/api.service"
+import { useSearchParams } from "next/navigation"
+import React, { FormEvent, useEffect, useRef, useState } from "react"
+import { toast } from "react-toastify"
 
 const WalletPage: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
-    const [amount, setAmount] = useState<number>(0)
+    const amountRef = useRef<HTMLInputElement>(null)
     const { CiCircleInfo, BsCoin } = icons
+    const searchParams = useSearchParams()
 
-    const ShowTopUpModal = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const objects = Object.fromEntries(formData.entries())
-        console.log(objects);
-
-        setShowModal(true)
-    }
+    useEffect(() => {
+        console.log(searchParams.get("resultCode"));
+        if (searchParams.get("resultCode") != null && searchParams.get("resultCode") != "0") {
+            toast.error(momoPaymentResult(searchParams.get("resultCode")!))
+        }
+    }, [])
 
     return (
         <>
@@ -39,7 +42,7 @@ const WalletPage: React.FC = () => {
                                 <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/TopUpXu/question-mark.svg" alt="xu" className="table-cell" />
                             </span>
                         </div>
-                        <form className="flex flex-col sm:flex-row mt-6" onSubmit={ShowTopUpModal}>
+                        <div className="flex flex-col sm:flex-row mt-6">
                             <div className="w-3/5">
                                 <div className="">
                                     <h4 className="table mb-4">
@@ -58,7 +61,7 @@ const WalletPage: React.FC = () => {
                                                         <span className="">
                                                             <BsCoin color="#eab308" size={36} />
                                                         </span>
-                                                        <input type="text" name="price" placeholder="0" className="outline-none w-full table-cell bg-transparent py-2 px-3 text-2xl text-white" />
+                                                        <input type="text" placeholder='0' ref={amountRef} className="outline-none w-full table-cell bg-transparent py-2 px-3 text-2xl text-white" />
                                                     </div>
                                                     <ul className="gap-3 select-none text-white mt-4 flex flex-wrap">
                                                         <li className="bg-blue-500 rounded-md p-1" value="100000">100.000</li>
@@ -87,7 +90,7 @@ const WalletPage: React.FC = () => {
                                             <span className="ml-auto">0 ₫</span>
                                         </p>
                                         <div className="text-lg text-white mt-8">
-                                            <button className="bg-blue-500 rounded-md w-full py-1.5">Tiến hành thanh toán</button>
+                                            <button onClick={() => setShowModal(true)} className="bg-blue-500 rounded-md w-full py-1.5">Tiến hành thanh toán</button>
                                         </div>
                                     </div>
                                     <div className="mt-3">
@@ -99,11 +102,11 @@ const WalletPage: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div >
             </div>
-            <ChoosePaymentPopUp showModal={showModal} setShowModal={setShowModal} />
+            <ChoosePaymentPopUp showModal={showModal} setShowModal={setShowModal} amount={+(amountRef.current?.value ?? 0)} />
         </>
     )
 }

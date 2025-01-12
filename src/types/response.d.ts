@@ -1,17 +1,15 @@
 interface ArrayAPIResponse<Type> {
-    status: string,
     statusCode: number,
     message: string,
     data?: {
-        data?: Type,
-        total?: number,
+        payload?: Type,
+        pageSize?: number,
         totalPages?: number,
-        currentPage?: number
+        page?: number
     }
 }
 
 interface SingleAPIResponse<Type> {
-    status?: string,
     statusCode?: number,
     message?: string,
     data?: Type
