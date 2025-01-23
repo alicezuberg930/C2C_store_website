@@ -16,10 +16,9 @@ const WalletPage: React.FC = () => {
     const searchParams = useSearchParams()
 
     useEffect(() => {
-        console.log(searchParams.get("resultCode"));
-        if (searchParams.get("resultCode") != null && searchParams.get("resultCode") != "0") {
-            toast.error(momoPaymentResult(searchParams.get("resultCode")!))
-        }
+        // if (searchParams.get("resultCode") != null && searchParams.get("resultCode") != "0") {
+        //     toast.error(momoPaymentResult(searchParams.get("resultCode")!))
+        // }
     }, [])
 
     return (

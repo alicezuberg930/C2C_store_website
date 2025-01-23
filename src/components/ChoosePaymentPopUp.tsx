@@ -1,6 +1,6 @@
 "use client"
 import { formatVND } from "@/common/utils"
-import { createTransaction, momo } from "@/services/api.service"
+import { createTransaction, momo, vnpay } from "@/services/api.service"
 import { isAxiosError } from "axios"
 import { useRouter } from "next/navigation"
 import React, { Dispatch, SetStateAction } from "react"
@@ -8,24 +8,29 @@ import { toast } from "react-toastify"
 
 const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<SetStateAction<boolean>>, amount: number }> = ({ showModal, setShowModal, amount }) => {
     const router = useRouter()
-
+    // https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=1200000&vnp_Command=pay&vnp_CreateDate=20250113010029&vnp_CurrCode=VND
+    // &vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=wallet_topup&vnp_OrderType=wallet_topup&
+    // vnp_ReturnUrl=http://localhost:3000/user/wallet&vnp_TmnCode=QB38NYN8&vnp_TxnRef=616&vnp_Version=2.1.0&
+    // vnp_SecureHash=d580d29058472bd095aa54aac654cdc2592b378f4aa51c42ec440012b29c5e0870bd17d268dda83676dacfee2e791c0ff7fa91daf19a306605df5b1d8db22815
     const handleTopUpRequest = async () => {
         // momo()
-        // return
-        let transaction: Transaction = { userId: "675d0b1f16a1c2884e9be834", amount, type: "wallet topup", status: "pending", paymentMethod: "momo" }
-        try {
-            let a = await createTransaction({ transaction })
-            toast.success(a.message)
-            if (a.data?.paymentUrl) router.push(a.data.paymentUrl)
-        } catch (error) {
-            if (isAxiosError(error)) {
-                if (error.response) {
-                    (error.response?.data.message).forEach((message: string) => toast.error(JSON.stringify(message)))
-                } else {
-                    toast.error('Loi con me m r')
-                }
-            }
-        }
+        vnpay()
+        // router.push(vnpay())
+        return
+        // let transaction: Transaction = { userId: "675d0b1f16a1c2884e9be834", amount, type: "wallet topup", status: "pending", paymentMethod: "momo" }
+        // try {
+        //     let a = await createTransaction({ transaction })
+        //     toast.success(a.message)
+        //     if (a.data?.paymentUrl) router.push(a.data.paymentUrl)
+        // } catch (error) {
+        //     if (isAxiosError(error)) {
+        //         if (error.response) {
+        //             (error.response?.data.message).forEach((message: string) => toast.error(JSON.stringify(message)))
+        //         } else {
+        //             toast.error('Loi con me m r')
+        //         }
+        //     }
+        // }
     }
 
     return (
@@ -109,7 +114,7 @@ const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<
                             <div className="my-3">
                                 <p className="text-xs">
                                     <span>Bằng việc tiến hành giao dịch, bạn đồng ý với điều khoản sử dụng dịch vụ. </span>
-                                    <a className="text-blue-500" href="" target="_blank">Xem thêm tại đây.</a>
+                                    <a className="text-blue-500" href="/user/wallet" target="_blank">Xem thêm tại đây.</a>
                                 </p>
                                 <div className="flex gap-3 mt-3">
                                     <button className="flex-1 py-2 text-white bg-blue-500 rounded-md" onClick={() => setShowModal(false)}>Huỷ</button>

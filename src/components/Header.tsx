@@ -3,7 +3,6 @@ import { icons } from '../common/icons'
 import { user } from '../common/dummy.data'
 import Link from 'next/link'
 
-
 const Header: React.FC = () => {
     const { CiShoppingCart, CiSearch } = icons
 

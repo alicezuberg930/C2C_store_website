@@ -16,6 +16,22 @@ const BannerSlider = () => {
     const [min, setMin] = useState<number>(0)
     const [max, setMax] = useState<number>(2)
     const [isAuto, setIsAuto] = useState<boolean>(true)
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth)
+
+    useEffect(() => {
+        // window.addEventListener('resize', (e: UIEvent) => {
+        // })
+        window.addEventListener('resize', setWidth)
+        return () => { window.removeEventListener('resize', setWidth) }
+    }, [])
+
+    const setWidth = (e: any) => {
+        // console.log(e.target.innerWidth);
+
+        // setCurrentWidth(e.target.innerWidth)
+        // if (e.target.innerWidth < 1024)
+        //     setMax(1)
+    }
 
     const getArrSlider = (start: number, end: number, length: number) => {
         const limit = (start > end) ? length : end
@@ -81,13 +97,9 @@ const BannerSlider = () => {
 
     useEffect(() => {
         if (isAuto) {
-            interval = setInterval(() => {
-                handleBannerAnimation(1)
-            }, 4000)
+            interval = setInterval(() => handleBannerAnimation(1), 4000)
         }
-        return () => {
-            interval && clearInterval(interval)
-        }
+        return () => { interval && clearInterval(interval) }
     }, [min, max, isAuto])
 
     const visibleIndices = getArrSlider(min, max, banners.length)

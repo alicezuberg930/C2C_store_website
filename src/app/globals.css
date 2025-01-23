@@ -17,6 +17,7 @@
 } */
 
 body {
+  font-family: 'Inter', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -37,9 +38,9 @@ body {
   width: 0.5rem;
 }
 
-/* ::-webkit-scrollbar-track {
-  background: rgb(66, 101, 128);
-} */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
 
 ::-webkit-scrollbar-thumb {
   background: #92c5fc;

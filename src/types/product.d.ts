@@ -1,5 +1,5 @@
 interface Product {
-    name?: string,
+    title?: string,
     description?: string,
     price?: number,
     stock?: number,

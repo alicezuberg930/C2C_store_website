@@ -4,12 +4,12 @@ import { icons } from '@/common/icons'
 import { formatDate, formatVND } from '@/common/utils'
 import React, { useEffect, useState } from 'react'
 
-const ProductDetailsPage: React.FC<{ params: { id: string } }> = ({ params }) => {
+const ProductDetailsPage: React.FC<{ params: { slug: string } }> = ({ params }) => {
     const { CiShare2, MdOutlineModeComment, MdOutlineThumbUp, CiCircleAlert, MdVerified, FaStar, FaChevronLeft, FaChevronRight, RiSubtractFill, IoIosAdd, MdOutlineAddShoppingCart, CiCircleInfo } = icons
     const [product, setProduct] = useState<Product>()
 
     useEffect(() => {
-        let id = params.id.split('-').at(-1)
+        let id = params.slug.split('-').at(-1)
         setProduct(products.find(product => product._id === id)!)
 
         document.getElementById('img-container')?.addEventListener('mouseover', () => {
@@ -95,7 +95,7 @@ const ProductDetailsPage: React.FC<{ params: { id: string } }> = ({ params }) =>
                     <section className='flex flex-auto'>
                         <div className='flex-auto flex-col pr-3'>
                             <div className='font-semibold text-xl'>
-                                <span>{product?.name}</span>
+                                <span>{product?.title}</span>
                             </div>
                             <div className='flex mt-2'>
                                 <button className='gap-2 flex items-center'>
@@ -276,7 +276,7 @@ const ProductDetailsPage: React.FC<{ params: { id: string } }> = ({ params }) =>
                                     <div className='py-2 border-b'>
                                         <div className='grid gap-1 grid-cols-2'>
                                             <span className='text-[rgb(128,128,137)] max-w-[300px]'>Chất liệu</span>
-                                            <span className=''>{product?.name}</span>
+                                            <span className=''>{product?.title}</span>
                                         </div>
                                     </div>
                                     <div className='py-2'>
