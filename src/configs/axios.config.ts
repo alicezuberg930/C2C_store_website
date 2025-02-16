@@ -1,13 +1,8 @@
 import axios from "axios"
 // import { getCachedSession } from "../common/utils"
-let apiUrl = process.env.DEVELOPMENT_API_URL
-if (process.env.ENVIRONMENT === "production") apiUrl = process.env.PRODUCTION_API_URL
-if (process.env.ENVIRONMENT === "development") apiUrl = process.env.DEVELOPMENT_API_URL
+let apiUrl = process.env.ENVIRONMENT === "production" ? process.env.PRODUCTION_API_URL : process.env.DEVELOPMENT_API_URL
 
-const axioInstance = axios.create({
-    baseURL: apiUrl,
-    headers: { Accept: "application/json" },
-})
+const axioInstance = axios.create({ baseURL: apiUrl, headers: { Accept: "application/json" } })
 
 // do something before requesting
 axioInstance.interceptors.request.use(async (config) => {
@@ -15,7 +10,8 @@ axioInstance.interceptors.request.use(async (config) => {
     //     const session = await getCachedSession() // Fetch or retrieve cached session
     //     console.log(session ?? "no session")
     //     if (session && config.url !== "/.netlify/functions/getlist") {
-    //         config.headers["Authorization"] = `Bearer ${session.user.access_token}`
+    //      config.headers["Authorization"] = `Bearer ${session.user.access_token}`
+    config.headers["Authorization"] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzkxZjFiYzYzOWVjZTcyMDViNmE5YmIiLCJlbWFpbCI6InRpZW4xMjMxQGdtYWlsLmNvbSIsImlhdCI6MTczNzYyOTA4MSwiZXhwIjoxNzQ2MjY5MDgxfQ.BYXfijmbmIWJICL19WzcvvBHdSq37bTiH_trJocIc34`
     //     } else {
     //         delete config.headers["Authorization"]
     //     }

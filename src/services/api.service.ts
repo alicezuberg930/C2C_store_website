@@ -149,3 +149,8 @@ export const getCategories = async () => {
     let response = await axioInstance<ArrayAPIResponse<Category[]>>({ method: 'GET', url: '/categories' })
     return response.data
 }
+
+export const getDeliveryAddresses = async () => {
+    let response = await axioInstance<SingleAPIResponse<DeliveryAddress[]>>({ method: 'GET', url: '/users/delivery/address' })
+    return response.data
+}

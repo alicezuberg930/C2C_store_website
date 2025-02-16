@@ -1,6 +1,6 @@
 "use client"
 import { formatVND } from "@/common/utils"
-import { createTransaction, momo, vnpay } from "@/services/api.service"
+import { createTransaction, momo } from "@/services/api.service"
 import { isAxiosError } from "axios"
 import { useRouter } from "next/navigation"
 import React, { Dispatch, SetStateAction } from "react"
@@ -14,7 +14,7 @@ const ChoosePaymentPopUp: React.FC<{ showModal: boolean, setShowModal: Dispatch<
     // vnp_SecureHash=d580d29058472bd095aa54aac654cdc2592b378f4aa51c42ec440012b29c5e0870bd17d268dda83676dacfee2e791c0ff7fa91daf19a306605df5b1d8db22815
     const handleTopUpRequest = async () => {
         // momo()
-        vnpay()
+        // vnpay()
         // router.push(vnpay())
         return
         // let transaction: Transaction = { userId: "675d0b1f16a1c2884e9be834", amount, type: "wallet topup", status: "pending", paymentMethod: "momo" }

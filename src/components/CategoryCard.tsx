@@ -7,7 +7,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
     // const { AiOutlineHeart, BsPlayFill, BsThreeDots } = icons
 
     return (
-        <div className={`text-sm flex flex-col gap-3 cursor-pointer`}>
+        <div className={`text-sm flex flex-col gap-3 cursor-pointer px-2`}>
             <div className="relative w-full group overflow-hidden rounded-lg bg-white aspect-square">
                 <div className="text-white absolute w-full h-full gap-3 bg-overlay z-20 invisible group-hover:visible flex items-center justify-center">
                     {/* <span><AiOutlineHeart size={25} /></span> */}

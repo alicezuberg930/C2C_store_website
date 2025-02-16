@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import ReduxStoreProvider from '@/components/ReduxStoreProvider'
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main className='max-w-screen-xl px-4 xl:px-0 mx-auto my-12'>
-          {children}
-        </main>
-        <Footer />
+        <ReduxStoreProvider>
+          <Header />
+          <main className='max-w-screen-xl px-4 xl:px-0 mx-auto my-12'>
+            {children}
+          </main>
+          <Footer />
+        </ReduxStoreProvider>
         <ToastContainer
           closeOnClick
           draggable

@@ -1,66 +1,86 @@
-import React, { useState, useRef, useEffect } from "react";
-import { icons } from "../common/icons";
-import CategoryCard from "./CategoryCard";
-import { useSelector } from "react-redux";
+import React, { useState, useRef, useEffect } from "react"
+import { icons } from "@/common/icons"
 
-const CustomSlider: React.FC<{ categories: Category[], title: string, }> = ({ categories, title }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+export interface Settings {
+    children?: React.ReactNode,
+    slidesToShow: number,
+    autoplay?: boolean,
+    autoplaySpeed?: number,
+    infinite?: boolean,
+    responsive?: { breakpoint: number, slidesToShow: number }[],
+    customMargin?: number
+}
+
+const CustomSlider: React.FC<Settings> = ({
+    children, slidesToShow = 1, autoplay = false, autoplaySpeed = 3000, infinite = true, responsive = [], customMargin = 2
+}) => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const sliderRef = useRef(null)
+    const totalSlides = React.Children.count(children)
     const { FaChevronLeft, FaChevronRight } = icons
-    const totalItems = categories.length
-    // const { width } = useSelector((state: any) => state.utils)
-    const [visibleItems, setVisibleItems] = useState(3) // Number of items visible at once
+    const [visibleSlides, setVisibleSlides] = useState(slidesToShow)
 
-    // useEffect(() => {
-    //     setVisibleItems(width > 1280 ? 5 : width > 1024 ? 4 : width > 768 ? 3 : 2)
-    // }, [width])
+    const updateSlidesToShow = () => {
+        let newSlidesToShow = slidesToShow
+        responsive.forEach((breakpoint) => {
+            if (window.innerWidth <= breakpoint.breakpoint) newSlidesToShow = breakpoint.slidesToShow
+        })
+        setVisibleSlides(newSlidesToShow)
+    }
 
-
+    // Listen for window resize and update visible slides
     useEffect(() => {
-        if (currentIndex > 0) setCurrentIndex(currentIndex - 1)
-    }, [visibleItems])
+        updateSlidesToShow()
+        window.addEventListener("resize", updateSlidesToShow)
+        return () => window.removeEventListener("resize", updateSlidesToShow)
+    }, [])
 
-    console.log({ currentIndex, visibleItems });
-
-    const next = () => {
-        if (currentIndex < totalItems - visibleItems) setCurrentIndex(currentIndex + 1);
+    const nextSlide = () => {
+        if (currentIndex < totalSlides - visibleSlides) {
+            setCurrentIndex(currentIndex + 1)
+        } else if (infinite) {
+            setCurrentIndex(0) // Loop back to start
+        }
     }
 
-    const prev = () => {
-        if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+    const prevSlide = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1)
+        } else if (infinite) {
+            setCurrentIndex(totalSlides - visibleSlides) // Loop back to end
+        }
     }
+
+    // AutoPlay
+    useEffect(() => {
+        if (autoplay) {
+            const interval = setInterval(() => {
+                nextSlide()
+            }, autoplaySpeed)
+            return () => clearInterval(interval)
+        }
+    }, [currentIndex, autoplay, autoplaySpeed])
 
     return (
-        <div className="mt-10 w-full">
-            <div className="mb-5">
-                <h3 className="text-white text-xl font-bold">{title}</h3>
+        <div className='relative w-full overflow-hidden'>
+            <button onClick={prevSlide} className="absolute left-4 z-50 rounded-full p-2 bg-[rgba(203,213,225,0.8)] text-white bottom-1/2 translate-y-1/2">
+                <FaChevronLeft size={24} />
+            </button>
+            <div className={`flex duration-1000 ease-in-out -mx-${customMargin}`} ref={sliderRef} style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}>
+                {
+                    React.Children.map(children, (child, i) => {
+                        return (
+                            <div key={i} style={{ width: `${100 / visibleSlides}%`, flex: '0 0 auto' }}>
+                                {child}
+                            </div>
+                        )
+                    })
+                }
             </div>
-            <div className="relative">
-                <div className="overflow-hidden">
-                    <button onClick={prev} className="absolute left-4 z-50 rounded-full p-2 bg-[rgba(203,213,225,0.8)] text-white bottom-1/2 translate-y-1/2">
-                        <FaChevronLeft size={24} />
-                    </button>
-                    <div className="transition-transform duration-500 ease-in-out grid -mx-2"
-                        style={{
-                            transform: `translateX(-${(100 / visibleItems) * currentIndex}%)`,
-                            gridTemplateColumns: `repeat(${totalItems}, ${100 / visibleItems}%)`,
-                        }}
-                    >
-                        {
-                            categories?.map(category => {
-                                return (
-                                    <div key={category?._id} className={`px-2`}>
-                                        <CategoryCard category={category} />
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                    <button onClick={next} className="absolute right-4 z-50 rounded-full p-2 bg-[rgba(203,213,225,0.7)] text-white bottom-1/2 translate-y-1/2">
-                        <FaChevronRight size={24} />
-                    </button>
-                </div>
-            </div>
-        </div >
+            <button onClick={nextSlide} className="absolute right-4 z-50 rounded-full p-2 bg-[rgba(203,213,225,0.7)] text-white bottom-1/2 translate-y-1/2">
+                <FaChevronRight size={24} />
+            </button>
+        </div>
     )
 }
 

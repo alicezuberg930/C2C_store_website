@@ -10,30 +10,29 @@ const Header: React.FC = () => {
         <div className='bg-gray-800'>
             <div className='max-w-screen-xl mx-auto px-4 xl:px-0'>
                 <div className='flex justify-end'>
-                    {
-                        user != null ?
-                            <div className='group pt-2'>
-                                <div className='relative'>
-                                    <button className='text-white flex gap-2 items-center'>
-                                        <img src={user.avatar} className='h-6 w-6 rounded-full object-cover' />
-                                        <span>{user.name}</span>
-                                    </button>
-                                    <div className='rounded-md whitespace-nowrap mt-2 hidden w-fit group-hover:block absolute top-4 right-0 shadow-lg p-3 bg-white z-50'>
-                                        <a className='block' href='/user/profile'>Thông tin cá nhân</a>
-                                        <a className='block py-3' href='/user/orders'>Lịch sử mua hàng</a>
-                                        <a className='block' href='/logout'>Đăng xuất</a>
-                                    </div>
-                                </div>
-                            </div> :
-                            <div className='flex pt-1'>
-                                <div className=''>
-                                    <a className='p-0 text-white' href='/buyer/login'>Đăng nhập</a>
-                                </div>
-                                <div className='mx-2 text-light'> | </div>
-                                <div className=''>
-                                    <a id='login-logout' className='text-white' href='/buyer/signup'>Đăng ký</a>
+                    {user ?
+                        <div className='group pt-2'>
+                            <div className='relative'>
+                                <button className='text-white flex gap-2 items-center'>
+                                    <img src={user.avatar} className='h-6 w-6 rounded-full object-cover' />
+                                    <span>{user.name}</span>
+                                </button>
+                                <div className='rounded-md whitespace-nowrap mt-2 hidden w-fit group-hover:block absolute top-4 right-0 shadow-lg p-3 bg-white z-50'>
+                                    <Link className='block' href='/user/profile'>Thông tin cá nhân</Link>
+                                    <Link className='block py-2' href='/user/orders'>Lịch sử mua hàng</Link>
+                                    <button className='block'>Đăng xuất</button>
                                 </div>
                             </div>
+                        </div> :
+                        <div className='flex pt-1'>
+                            <div className=''>
+                                <a className='p-0 text-white' href='/buyer/login'>Đăng nhập</a>
+                            </div>
+                            <div className='mx-2 text-light'> | </div>
+                            <div className=''>
+                                <a id='login-logout' className='text-white' href='/buyer/signup'>Đăng ký</a>
+                            </div>
+                        </div>
                     }
                 </div>
                 <nav className='py-6 flex justify-between items-center gap-4 sm:gap-8 flex-wrap'>

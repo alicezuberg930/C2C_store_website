@@ -1,7 +1,30 @@
 import { icons } from "@/common/icons"
+import Link from "next/link"
 
 const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
     const { RiCustomerService2Fill, CiWallet, FaUser, IoMdNotifications, MdInbox, TbCreditCardRefund, FaRegAddressBook, MdOutlineCreditCard, MdOutlineModeComment, CiHeart, MdOutlineDiscount } = icons
+    const menuTabs = [
+        {
+            'title': 'Thông tin tài khoản',
+            'path': '/user/profile',
+            'icon': <FaUser size={24} />
+        },
+        {
+            'title': 'Thông báo của tôi',
+            'path': '/user/notification',
+            'icon': <IoMdNotifications size={24} />
+        },
+        {
+            'title': 'Sổ địa chỉ',
+            'path': '/user/address',
+            'icon': <FaRegAddressBook size={24} />
+        },
+        {
+            'title': 'Quản lý ví của tôi',
+            'path': '/user/wallet',
+            'icon': <CiWallet size={24} />
+        },
+    ]
 
     return (
         <aside className="bg-white flex-none w-fit fixed h-screen md:rounded-md overflow-auto md:h-fit md:relative top-0 left-0">
@@ -14,19 +37,19 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
                 </div>
             </div>
             <ul className="text-sm text-gray-500">
-                <li className="py-2 px-3 hover:bg-gray-200">
-                    <a className="flex gap-2 items-center" href="/customer/notification">
-                        <FaUser className="w-6 h-6" />
-                        <span>Thông tin tài khoản</span>
-                    </a>
-                </li>
-                <li className="py-2 px-3 hover:bg-gray-200">
-                    <a className="flex gap-2 items-center" href="/customer/notification">
-                        <IoMdNotifications className="w-6 h-6" />
-                        <span>Thông báo của tôi</span>
-                    </a>
-                </li>
-                <li className="py-2 px-3 hover:bg-gray-200">
+                {
+                    menuTabs.map(menu => {
+                        return (
+                            <li key={menu.path} className="py-2 px-3 hover:bg-gray-200">
+                                <Link className="flex gap-2 items-center" href={menu.path}>
+                                    {menu.icon}
+                                    <span>{menu.title}</span>
+                                </Link>
+                            </li>
+                        )
+                    })
+                }
+                {/* <li className="py-2 px-3 hover:bg-gray-200">
                     <a className="flex gap-2 items-center" href="/sales/order/history">
                         <MdInbox className="w-6 h-6" />
                         <span>Quản lý đơn hàng</span>
@@ -36,12 +59,6 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
                     <a className="flex gap-2 items-center" href="/return-tracking/history">
                         <TbCreditCardRefund className="w-6 h-6" />
                         <span>Quản lý đổi trả</span>
-                    </a>
-                </li>
-                <li className="py-2 px-3 hover:bg-gray-200">
-                    <a className="flex gap-2 items-center" href="/customer/address">
-                        <FaRegAddressBook className="w-6 h-6" />
-                        <span>Sổ địa chỉ</span>
                     </a>
                 </li>
                 <li className="py-2 px-3 hover:bg-gray-200">
@@ -69,17 +86,11 @@ const ProfileMenu: React.FC<{ user: User }> = ({ user }) => {
                     </a>
                 </li>
                 <li className="py-2 px-3 hover:bg-gray-200">
-                    <a className="flex gap-2 items-center" href="/user/wallet">
-                        <CiWallet className="w-6 h-6" />
-                        <span>Quản lý ví của tôi</span>
-                    </a>
-                </li>
-                <li className="py-2 px-3 hover:bg-gray-200">
                     <a className="flex gap-2 items-center" href="/customer/help-center?src=sidebar_my_account">
                         <RiCustomerService2Fill className="w-6 h-6" />
                         <span>Hỗ trợ khách hàng</span>
                     </a>
-                </li>
+                </li> */}
             </ul>
         </aside>
     )
