@@ -11,7 +11,7 @@ axioInstance.interceptors.request.use(async (config) => {
     //     console.log(session ?? "no session")
     //     if (session && config.url !== "/.netlify/functions/getlist") {
     //      config.headers["Authorization"] = `Bearer ${session.user.access_token}`
-    config.headers["Authorization"] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzkxZjFiYzYzOWVjZTcyMDViNmE5YmIiLCJlbWFpbCI6InRpZW4xMjMxQGdtYWlsLmNvbSIsImlhdCI6MTczNzYyOTA4MSwiZXhwIjoxNzQ2MjY5MDgxfQ.BYXfijmbmIWJICL19WzcvvBHdSq37bTiH_trJocIc34`
+    config.headers["Authorization"] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVkMGIxZjE2YTFjMjg4NGU5YmU4MzQiLCJlbWFpbCI6IkxpbGlhbmExMjNAZ21haWwuY29tIiwiaWF0IjoxNzM5NzMxMTM4LCJleHAiOjE3NDgzNzExMzh9.e8D2_iwk6enCC9LlHcmuxSNoklE1nrscdvz-waI8kkQ`
     //     } else {
     //         delete config.headers["Authorization"]
     //     }

@@ -3,17 +3,18 @@ import { icons } from "@/common/icons"
 import UserLayout from "../components/UserLayout"
 import { useEffect, useState } from "react"
 import { getDeliveryAddresses } from "@/services/api.service"
+import LoadingShimmer from "@/components/LoadingShimmer"
 
 const AddressPage: React.FC = () => {
     const { IoIosAdd } = icons
     const [deliveryAddresses, setDeliveryAddresses] = useState<DeliveryAddress[]>([])
 
     useEffect(() => {
-        const a = async () => {
+        const fetchDeliveryAddresses = async () => {
             let response = await getDeliveryAddresses()
-            setDeliveryAddresses(response.data ?? [])
+            setDeliveryAddresses(response?.data ?? [])
         }
-        a()
+        fetchDeliveryAddresses()
     }, [])
 
     return (
@@ -26,7 +27,18 @@ const AddressPage: React.FC = () => {
                 </button>
             </div>
 
-            {JSON.stringify(deliveryAddresses)}
+            {deliveryAddresses.length > 0 ?
+                deliveryAddresses.map(deliveryAddress => {
+                    return (
+                        <div key={deliveryAddress._id} className="">
+                            <div className="flex items-center gap-4 pt-4">
+                                <span>{deliveryAddress.contactName}</span>
+                                <span className="text-blue-400 text-xs">{deliveryAddress.isDefault && 'Địa chỉ mặc định'}</span>
+                            </div>
+                        </div>
+                    )
+                }) : <LoadingShimmer />
+            }
         </UserLayout>
     )
 }

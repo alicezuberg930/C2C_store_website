@@ -2,9 +2,10 @@ interface DeliveryAddress {
     city?: string,
     district?: string,
     ward?: string,
-    address?: string,
+    street?: string,
     contactName?: string,
     contactPhone?: string,
     addressType?: string,
     isDefault?: boolean,
+    _id?: string
 }

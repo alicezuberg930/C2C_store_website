@@ -18,7 +18,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
                 </div>
                 <img src={category?.image ?? "./assets/image-not-found.jpg"} alt={category?.name} className="w-full h-full z-10 group-hover:animate-scale-up-center object-contain" />
             </div>
-            <div className="text-white">
+            <div className="text-center">
                 <span className="font-semibold line-clamp-2">{category?.name}</span>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { icons } from "@/common/icons"
 import { momoPaymentResult } from "@/common/payment.result"
 import ChoosePaymentPopUp from "@/components/ChoosePaymentPopUp"
 import ProfileMenu from "@/components/ProfileMenu"
-import { createTransaction } from "@/services/api.service"
+import { createTransaction, vnpay } from "@/services/api.service"
 import { useSearchParams } from "next/navigation"
 import React, { FormEvent, useEffect, useRef, useState } from "react"
 import { toast } from "react-toastify"
@@ -17,6 +17,7 @@ const WalletPage: React.FC = () => {
     const searchParams = useSearchParams()
 
     useEffect(() => {
+        vnpay()
         // if (searchParams.get("resultCode") != null && searchParams.get("resultCode") != "0") {
         //     toast.error(momoPaymentResult(searchParams.get("resultCode")!))
         // }

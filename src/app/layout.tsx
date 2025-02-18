@@ -20,9 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ReduxStoreProvider>
           <Header />
-          <main className='max-w-screen-xl px-4 xl:px-0 mx-auto my-12'>
-            {children}
-          </main>
+          <main className='max-w-screen-xl px-4 xl:px-0 mx-auto my-12'>{children}</main>
           <Footer />
         </ReduxStoreProvider>
         <ToastContainer
