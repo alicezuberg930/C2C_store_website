@@ -1,4 +1,6 @@
+import { isAxiosError } from "axios"
 import os from "os"
+import { toast } from "react-toastify"
 
 export const formatVND = (n: number): string => {
     const config: Intl.NumberFormatOptions = { style: 'currency', currency: 'VND', maximumFractionDigits: 9 }
@@ -51,4 +53,21 @@ export function getServerIp() {
     }
 
     return '127.0.0.1'; // Fallback to localhost
+}
+
+export const showResponseError = (error: any) => {
+    if (isAxiosError(error)) {
+        if (error.code == "ERR_NETWORK") {
+            toast.error(error.message)
+        } else {
+            const err = error.response?.data.message
+            if (Array.isArray(err)) {
+                err.forEach(e => toast.error(e))
+            } else {
+                toast.error(err)
+            }
+        }
+    } else {
+        toast.error("Lỗi không xác định")
+    }
 }

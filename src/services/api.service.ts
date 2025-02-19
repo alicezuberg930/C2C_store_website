@@ -78,50 +78,52 @@ export const vnpay = () => {
 }
 
 export const createTransaction = async ({ transaction }: { transaction: Transaction }) => {
-    let response = await axioInstance<SingleAPIResponse<Transaction>>({ method: "POST", url: "/transactions", data: transaction })
+    const response = await axioInstance<SingleAPIResponse<Transaction>>({ method: "POST", url: "/transactions", data: transaction })
     return response.data
 }
 
 export const getCategories = async () => {
-    let response = await axioInstance<ArrayAPIResponse<Category[]>>({ method: 'GET', url: '/categories' })
+    const response = await axioInstance<ArrayAPIResponse<Category[]>>({ method: 'GET', url: '/categories' })
     return response.data
 }
 
 export const getBanners = async () => {
-    let response = await axioInstance<ArrayAPIResponse<Banner[]>>({ method: 'GET', url: '/banners' })
+    const response = await axioInstance<ArrayAPIResponse<Banner[]>>({ method: 'GET', url: '/banners' })
     return response.data
 }
 
 // Địa chỉ người dùng
 export const getDeliveryAddresses = async () => {
-    try {
-        let response = await axioInstance<SingleAPIResponse<DeliveryAddress[]>>({ method: 'GET', url: '/users/delivery/address' })
-        return response.data
-    } catch (error) {
-        if (isAxiosError(error)) {
-            if (error.code == "ERR_NETWORK") {
-                toast.error(error.message)
-            } else {
-                toast.error(error.response?.data.message)
-            }
-        } else {
-            toast.error("Lỗi không xác định")
-        }
-        return null
-    }
+    const response = await axioInstance<SingleAPIResponse<DeliveryAddress[]>>({ method: 'GET', url: '/users/delivery/address' })
+    return response.data
 }
 
 export const createDeliveryAddress = async ({ deliveryAddress }: { deliveryAddress: DeliveryAddress }) => {
-    let response = await axioInstance<SingleAPIResponse<DeliveryAddress>>({ method: 'POST', url: '/users/delivery/address', data: deliveryAddress })
+    const response = await axioInstance<SingleAPIResponse<DeliveryAddress>>({ method: 'POST', url: '/users/delivery/address', data: deliveryAddress })
     return response.data
 }
 
 export const updateDeliveryAddress = async ({ id, deliveryAddress }: { id: string, deliveryAddress: DeliveryAddress }) => {
-    let response = await axioInstance<SingleAPIResponse<DeliveryAddress>>({ method: 'PATCH', url: `/users/delivery/address/${id}`, data: deliveryAddress })
+    const response = await axioInstance<SingleAPIResponse<DeliveryAddress>>({ method: 'PATCH', url: `/users/delivery/address/${id}`, data: deliveryAddress })
     return response.data
 }
 
 export const deleteDeliveryAddress = async ({ id }: { id: string }) => {
-    let response = await axioInstance<SingleAPIResponse<null>>({ method: 'DELETE', url: `/users/delivery/address/${id}` })
+    const response = await axioInstance<SingleAPIResponse<null>>({ method: 'DELETE', url: `/users/delivery/address/${id}` })
+    return response.data
+}
+
+export const getProvinces = async () => {
+    const response = await axioInstance<SingleAPIResponse<Province[]>>({ method: 'GET', url: `/locations/provinces` })
+    return response.data
+}
+
+export const getDistricts = async ({ code }: { code: string }) => {
+    const response = await axioInstance<SingleAPIResponse<District[]>>({ method: 'GET', url: `/locations/districts/${code}` })
+    return response.data
+}
+
+export const getWards = async ({ code }: { code: string }) => {
+    const response = await axioInstance<SingleAPIResponse<Ward[]>>({ method: 'GET', url: `/locations/wards/${code}` })
     return response.data
 }
